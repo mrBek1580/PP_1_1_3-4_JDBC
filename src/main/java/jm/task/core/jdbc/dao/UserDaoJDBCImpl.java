@@ -17,11 +17,11 @@ public class UserDaoJDBCImpl implements UserDao {
     public void createUsersTable() {
         try (Statement statement = connection.createStatement()) {
             String sql = """
-                    create table if not exists users (
-                    id serial primary key ,
-                    firstName varchar(64) not null ,
-                    lastName varchar(64) not null ,
-                    age int not null)
+                    CREATE TABLE IF NOT EXISTS users (
+                    id SERIAL PRIMARY KEY  ,
+                    firstName VARCHAR(64) NOT NULL ,
+                    lastName VARCHAR(64) NOT NULL ,
+                    age INT NOT NULL )
                     """;
             statement.execute(sql);
             System.out.println("Таблица создана");
@@ -33,7 +33,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void dropUsersTable() {
         try (Statement statement = connection.createStatement()) {
             String sql = """
-                    drop table if exists users;
+                    DROP TABLE IF EXISTS users;
                     """;
             statement.execute(sql);
             System.out.println("Таблица удалена");
@@ -44,7 +44,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void saveUser(String name, String lastName, byte age) {
         String sql = """
-                insert into users (firstName, lastName, age) value (?,?,?)
+                INSERT INTO users (firstName, lastName, age) VALUES (?,?,?)
                 """;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, name);
@@ -59,7 +59,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void removeUserById(long id) {
         String sql = """
-                delete from users where id = ?
+                DELETE FROM users WHERE id = ?
                 """;
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setLong(1, id);
@@ -73,7 +73,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public List<User> getAllUsers() {
         List<User> allUsers = new ArrayList<>();
         String sql = """
-                select id, firstName, lastName, age from users
+                SELECT id, firstName, lastName, age FROM users
                 """;
         try (Statement statement = connection.createStatement()) {
             ResultSet resultset = statement.executeQuery(sql);
@@ -93,7 +93,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void cleanUsersTable() {
         String sql = """
-                truncate table users
+                TRUNCATE TABLE users
                 """;
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
