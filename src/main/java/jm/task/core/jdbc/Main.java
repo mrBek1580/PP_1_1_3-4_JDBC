@@ -11,20 +11,20 @@ public class Main {
 
         userService.createUsersTable();
 
-        userService.saveUser("Aibek", "Akynbekov", (byte)25);
-        userService.saveUser("Beksultan", "Raimbekov", (byte)25);
-        userService.saveUser("Aslkan", "Alimbekov", (byte)25);
-        userService.saveUser("Azaliya", "Akynbekova", (byte)25);
-
-        List<User> allUsers = userService.getAllUsers();
-        for (User user: allUsers) {
-            System.out.println(user);
-        }
-
-        userService.dropUsersTable();
-
-        userService.cleanUsersTable();
-
-        userService.removeUserById(1);
+//        userService.saveUser("Aibek", "Akynbekov", (byte)25);
+//        userService.saveUser("Beksultan", "Raimbekov", (byte)25);
+//        userService.saveUser("Aslkan", "Alimbekov", (byte)25);
+//        userService.saveUser("Azaliya", "Akynbekova", (byte)25);
+//
+//        List<User> allUsers = userService.getAllUsers();
+//        for (User user: allUsers) {
+//            System.out.println(user);
+//        }
+//
+//        userService.dropUsersTable();
+//
+//        userService.cleanUsersTable();
+//
+//        userService.removeUserById(1);
     }
 }
